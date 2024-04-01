@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    /* overflow:hidden; */
+    background: rgb(122,36,233);
+    background: linear-gradient(90deg, rgba(122,36,233,1) 0%, rgba(122,36,233,1) 35%, rgba(178,123,242,1) 100%) no-repeat;
+}
+h5{
+    position: absolute;
+    z-index: 1;
+    top: -39%;
+    left: 28%;
+    /* margin: -1.5em -2.5em; */
+    /* width:1em; */
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    justify-content: center;
+    text-shadow: 0 0 3px #011;
+    background-color:  transparent;
+}
+h6{
+    position: absolute;
+    z-index: 1;
+    top: -25%;
+    left: 31.80%;
+    /* margin: -1.5em -2.5em; */
+    /* width:1em; */
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    justify-content: center;
+    text-shadow: 0 0 3px #011;
+    background-color:  transparent;
+}
+h6::first-line{
+    font-size: 200%;
+}
+.container{
+    position: relative;
+    z-index: 10;
+    margin: 150px auto 20px;
+    padding: 40px 30px 70px;
+    max-width: 540px;
+    width: 100%;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+}
+.row{
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #edeef0;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px
+}
+.completed {
+    text-decoration: line-through; /* Add a line-through style to the text */
+    color: #888; /* Change the color to a muted gray */
+    /* You can add additional styles as needed */
+  }
+.row input{
+    flex:1;
+    border: none;
+    outline: none;
+    transition: 0.8s;
+    background: transparent;
+    padding: 10px;
+}
+.row button{
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background: #00817D;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer; 
+    margin-left: 126.5px;
+    
+}
+.complete-btn{
+    border: none;
+    outline: none;
+    padding: 12px 30px;
+    background: #0ec31a;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer; 
+    margin-left: 150px;
+}
+.delete-btn{
+    border: none;
+    outline: none;
+    padding: 12px 30px;
+    background: #e00606;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer; 
+}
+/* .row button.fas{
+    color: #1daf;
+    font-size: 18px;
+} */
+ul li{
+    list-style: none;
+    font-size: 20 px;
+    font-weight: 400;
+    padding: 12px 8px 12px 50px;
+    margin-top: 20px;
+    background-color: #fff;
+    user-select: none;
+    cursor: pointer;
+    color: #000;
+    position: relative;
+    /* border:  solid #000; */
+    border-radius: 40px;
+}
+ul li::before{
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    /* background-image: url(data:image/png;base64,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); */
+    background-size :30px;
+    background-position: center;
+    top: 8px;
+    left: 8px;
+}
+ul li.checked{
+    color: #00817D;
+    text-decoration: line-through;
+    
+}
+ul li.checked::before{
+    background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_I6yNxEGxMKR5qJDPrNGLY6j81KrYYOiLUw&usqp=CAU);
+    background-size :35px;
+}
+ul li i{
+    position: absolute;
+    right: 0;
+    top: 2.80px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: #193146;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+ul li i:hover{
+    background: #edeef0;
+}
+section{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: url(https://images.pexels.com/photos/12618982/pexels-photo-12618982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) no-repeat;
+    background-position-x:center ;
+    background-size: cover;
+    animation: animatebg 50s linear infinite;
+}
+@keyframes animatebg {
+    0% ,100%{
+        transform: scale(1);
+    }
+    50%  {
+        transform: scale(1.2);
+    }
+}

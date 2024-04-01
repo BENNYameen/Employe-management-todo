@@ -1,0 +1,88 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/home.css" />
+    <script
+      src="https://kit.fontawesome.com/e035ecbc94.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="container">
+      <h5> Welcome..{{ username }}</h5>
+      <h6>Todo List</h6>
+      <div class="todo-app">
+        <div class="row">
+          <form action="/home" method="post" id="todo-form">
+            <input
+              name="todovalue"
+              type="text"
+              id="todo-input"
+              placeholder="Add a new task required"
+              required
+            />
+            <button id="btn" type="submit">Add Task</button>
+          </form>
+        </div>
+        <ul id="todo-list" class="tasks-container">
+          <!-- Todo items will be added here dynamically -->
+          {{#each tasks}}
+            <li>
+              {{this.task}}
+              <button
+                class="complete-btn"
+                data-id="{{this._id}}"
+              >Complete</button>
+              <button class="delete-btn" data-id="{{this._id}}">Delete</button>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <script>
+      console.log('JavaScript file loaded successfully');
+      document.addEventListener('DOMContentLoaded', () => {
+          const deleteButtons = document.querySelectorAll('.delete-btn'); 
+          const completeButtons = document.querySelectorAll('.complete-btn');
+          deleteButtons.forEach(button => {
+              button.addEventListener('click', async () => {
+                  const taskId = button.getAttribute('data-id');
+                  try {
+                      await fetch(`/home/${taskId}`, {
+                          method: 'DELETE'
+                      });
+                      button.parentElement.remove();
+                  } catch (error) {
+                      console.error('Error deleting task:', error);
+                  }
+              });
+          });
+          completeButtons.forEach(button => {
+              button.addEventListener('click', async () => {
+                  const taskId = button.getAttribute('data-id');
+                  try {
+                      const response = await fetch(`/home/${taskId}/complete`, { method: 'PUT' });
+                      const updatedTask = await response.json(); 
+                      if (updatedTask.completed) {
+                          button.parentElement.classList.add('completed'); 
+                          button.textContent = 'Incomplete'; 
+                      } else {
+                          button.parentElement.classList.remove('completed'); 
+                          button.textContent = 'Complete'; 
+                      } 
+                  } catch (error) { 
+                      console.error('Error toggling task completion: ', error); 
+                  } 
+              }); 
+          }); 
+      }); 
+      function goBackWithoutReloading() {
+        window.location.replace(document.referrer);
+      }
+    </script>    
+    <script src="js/home.js"></script>
+  </body>
+</html>

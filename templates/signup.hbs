@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login page</title>
+    <link rel="stylesheet" href="css/signup.css">
+  </head>
+  <body>
+    <header>
+      <h2 class="logo" >Logo</h2>
+      <nav class="navigation">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Service</a>
+        <a href="#">Contact</a>
+        <button class="login-but">Login</button>
+      </nav>
+    </header>
+    <div class="wrapper">
+      <div class="formbox-login">
+        <h2 >Sign  In</h2>
+        <form action="/signup" method="post">
+          <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+            <input type="text" id="username" name="username" required>
+            <label>Username</label>
+        </div>
+        <div class="input-box">
+           <span class="icon"><ion-icon name="lock"></ion-icon></span>
+            <input type="password" id="password" name="password" required>
+            <label>password</label>
+        </div>
+        <button  id="loginButton" type="submit" class="butn">signup</button>
+        </form>
+        
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  </body>
+</html>
