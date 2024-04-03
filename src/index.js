@@ -6,6 +6,7 @@ const { collection, Task } = require("./mongo"); // Import both collection and T
 const hbs = require("hbs");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
 
 // Sets up the Express app
 const app = express();
@@ -39,10 +40,12 @@ app.get("/signup", (req, res) => {
 
 app.post("/signup", async (req, res) => {
   try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 is the number of salt rounds
     const newUser = await collection.create({
       username: req.body.username,
-      password: req.body.password
+      password: hashedPassword 
     });
+    console.log("Hashed password:", hashedPassword);
     console.log("New user created:", newUser);
     res.render("home");
   } catch (error) {
@@ -176,7 +179,8 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (user.password !== password) {
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+      if (!isPasswordMatch) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
